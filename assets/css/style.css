@@ -1,0 +1,199 @@
+/* Hetznerhof – Brand Styleguide (Grafikstudio Melanie Mehlin)
+   Salbei #87A49F · Dunkelgrau #4D4B4E · Sonnengelb #F7D580 · Greige #FBF8F6
+   Text: Schwarz #1b1b1a / Weiß #ffffff
+   Headlines: Sailors Regular (Lizenzschrift) – Datei als assets/fonts/sailors-regular.woff2 ablegen,
+   bis dahin greift Poppins als Fallback. */
+
+@font-face { font-family: "Sailors"; src: url("../fonts/sailors-regular.woff2") format("woff2"); font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("../fonts/poppins-light.woff2") format("woff2"); font-weight: 300; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("../fonts/poppins-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("../fonts/poppins-medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("../fonts/poppins-semibold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+
+:root {
+  --salbei: #87a49f;
+  --salbei-dunkel: #5f7d78;
+  --dunkelgrau: #4d4b4e;
+  --gelb: #f7d580;
+  --greige: #fbf8f6;
+  --greige-2: #f3eee9;
+  --schwarz: #1b1b1a;
+  --weiss: #ffffff;
+  --display: "Sailors", "Poppins", system-ui, sans-serif;
+  --text: "Poppins", system-ui, sans-serif;
+  --wrap: 1180px;
+  --radius: 4px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--greige); color: var(--schwarz);
+  font-family: var(--text); font-weight: 300; font-size: 1.0625rem; line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+img, video { display: block; max-width: 100%; }
+a { color: inherit; }
+.wrap { width: min(var(--wrap), 100% - 2.5rem); margin-inline: auto; }
+
+/* Typo */
+h1, h2, h3 {
+  font-family: var(--display); font-weight: 500; text-transform: uppercase;
+  letter-spacing: .08em; line-height: 1.15; margin: 0 0 .6em;
+}
+h1 { font-size: clamp(2.2rem, 5.5vw, 4.2rem); }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); }
+h3 { font-size: 1.15rem; letter-spacing: .1em; }
+p { margin: 0 0 1.1em; }
+.eyebrow {
+  display: inline-block; font-weight: 500; font-size: .78rem; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--salbei-dunkel); margin-bottom: 1rem;
+}
+.on-dark .eyebrow { color: var(--gelb); }
+.lead { font-size: 1.2rem; max-width: 40ch; }
+
+/* Buttons */
+.btn {
+  display: inline-block; font-family: var(--text); font-weight: 500; font-size: .85rem;
+  letter-spacing: .14em; text-transform: uppercase; text-decoration: none;
+  padding: .95rem 1.7rem; border-radius: var(--radius); border: 1.5px solid transparent;
+  transition: transform .2s ease, background .2s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-gelb { background: var(--gelb); color: var(--schwarz); }
+.btn-gelb:hover { background: #f3ca5f; }
+.btn-line { border-color: currentColor; color: inherit; }
+.btn-row { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }
+
+/* Header */
+.site-header {
+  position: absolute; inset: 0 0 auto 0; z-index: 10; color: var(--weiss);
+}
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; padding-block: 1.4rem; }
+.site-header .logo img { height: 30px; width: auto; }
+.nav { display: flex; gap: 2rem; align-items: center; }
+.nav a {
+  text-decoration: none; font-weight: 500; font-size: .8rem; letter-spacing: .16em; text-transform: uppercase;
+  opacity: .92;
+}
+.nav a:hover, .nav a[aria-current="page"] { opacity: 1; border-bottom: 1.5px solid var(--gelb); }
+.nav-toggle { display: none; background: none; border: 0; color: inherit; font: inherit; cursor: pointer; }
+.site-header.solid { position: sticky; top: 0; background: var(--greige); color: var(--schwarz); border-bottom: 1px solid #e8e1da; }
+
+/* Hero */
+.hero {
+  position: relative; min-height: 92vh; display: grid; align-items: end; color: var(--weiss); overflow: hidden;
+  background: var(--dunkelgrau);
+}
+.hero video, .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(27,27,26,.5) 0%, rgba(27,27,26,.15) 30%, rgba(27,27,26,.6) 100%),
+              linear-gradient(90deg, rgba(27,27,26,.45) 0%, rgba(27,27,26,0) 60%);
+}
+.hero-content { position: relative; z-index: 2; padding-block: 0 6rem; }
+.hero-logo { width: min(340px, 70vw); margin-bottom: 2rem; }
+.hero h1 { max-width: 16ch; }
+.hero .lead { color: rgba(255,255,255,.92); }
+
+.hours-badge {
+  position: absolute; z-index: 3; right: max(1.25rem, calc((100% - var(--wrap)) / 2)); bottom: 6rem;
+  background: var(--gelb); color: var(--schwarz); border-radius: 50%; width: 150px; height: 150px;
+  display: grid; place-content: center; text-align: center; line-height: 1.2; transform: rotate(-8deg);
+}
+.hours-badge small { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; }
+.hours-badge strong { font-family: var(--display); font-size: 1.9rem; font-weight: 500; letter-spacing: .04em; }
+
+/* Sections */
+section { padding-block: clamp(4.5rem, 9vw, 8rem); }
+.bg-salbei { background: var(--salbei); color: var(--weiss); }
+.bg-grau { background: var(--dunkelgrau); color: var(--weiss); }
+.bg-weiss { background: var(--weiss); }
+.center { text-align: center; }
+.center .lead { margin-inline: auto; }
+
+.statement p {
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem); font-weight: 300; line-height: 1.55; max-width: 34ch; margin-inline: auto;
+}
+
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+.split.reverse > :first-child { order: 2; }
+.split figure { margin: 0; }
+.split img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: var(--radius); }
+
+.facts { display: flex; gap: 2.5rem; margin-top: 2rem; flex-wrap: wrap; }
+.facts div { border-top: 1.5px solid var(--salbei); padding-top: .8rem; }
+.facts strong { display: block; font-family: var(--display); font-weight: 500; font-size: 2rem; letter-spacing: .04em; line-height: 1.1; }
+.facts span { font-size: .85rem; }
+
+/* Sortiment */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.card { background: var(--weiss); border-radius: var(--radius); overflow: hidden; }
+.card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.card .body { padding: 1.6rem 1.6rem 1.8rem; }
+.card p { font-size: .95rem; margin: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin-top: 2.5rem; padding: 0; list-style: none; }
+.tags li { border: 1px solid var(--salbei); color: var(--salbei-dunkel); border-radius: 999px; padding: .35rem 1rem; font-size: .85rem; font-weight: 400; }
+
+/* Gallery */
+.gallery { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 280px 280px; gap: 1rem; }
+.gallery img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+.gallery img:first-child { grid-row: span 2; }
+
+/* Teaser band */
+.teaser { position: relative; color: var(--weiss); padding: 0; }
+.teaser img { width: 100%; height: clamp(420px, 70vh, 640px); object-fit: cover; }
+.teaser::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(27,27,26,.65), rgba(27,27,26,0) 65%); }
+.teaser .wrap { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; z-index: 2; }
+.teaser h2 { max-width: 14ch; }
+
+/* Visit */
+.visit { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+.visit h3 { color: var(--gelb); }
+.visit p { margin: 0; }
+.visit a { text-decoration-color: var(--gelb); text-underline-offset: 4px; }
+
+/* Lists */
+.check { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: .8rem; }
+.check li { padding-left: 2rem; position: relative; }
+.check li::before {
+  content: ""; position: absolute; left: 0; top: .55em; width: 1.1rem; height: 1.1rem; border-radius: 50%;
+  background: var(--gelb) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%231b1b1a' stroke-width='2'/%3E%3C/svg%3E") center/70% no-repeat;
+}
+
+.info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.info { background: var(--weiss); padding: 2.2rem; border-radius: var(--radius); border-top: 4px solid var(--salbei); }
+.info.accent { border-top-color: var(--gelb); }
+.info p:last-child { margin: 0; }
+.note { font-size: .88rem; color: var(--dunkelgrau); }
+
+/* Footer */
+.site-footer { background: var(--schwarz); color: rgba(255,255,255,.8); padding: 4rem 0 2rem; font-size: .9rem; }
+.site-footer .wrap { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2rem; }
+.site-footer img { height: 70px; width: auto; margin-bottom: 1rem; }
+.site-footer h3 { color: var(--weiss); font-size: .85rem; }
+.site-footer a { text-decoration: none; }
+.site-footer a:hover { color: var(--gelb); }
+.site-footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .3rem; }
+.legal { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.5rem; margin-top: 1.5rem; font-size: .8rem; }
+
+/* Legal pages */
+.page-head { padding: 9rem 0 3rem; }
+.prose { max-width: 70ch; }
+.prose h2 { font-size: 1.3rem; margin-top: 2.2rem; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .split, .visit, .info-grid, .site-footer .wrap { grid-template-columns: 1fr; }
+  .split.reverse > :first-child { order: 0; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 160px 160px; }
+  .gallery img:first-child { grid-column: span 2; grid-row: auto; }
+  .hours-badge { width: 112px; height: 112px; bottom: auto; top: 6rem; }
+  .hours-badge strong { font-size: 1.4rem; }
+  .nav-toggle { display: block; }
+  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 1.2rem;
+         padding: 1.5rem; background: var(--dunkelgrau); color: var(--weiss); }
+  .nav.open { display: flex; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
